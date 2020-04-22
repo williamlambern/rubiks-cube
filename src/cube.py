@@ -2,7 +2,6 @@
 
 '''
 to add:
-- solve detection
 - ai
 '''
 
@@ -57,14 +56,13 @@ class Cube:
         self.data.append(Piece(0,-1,-1, [None,'o','y']))
         self.data.append(Piece(1,-1,-1, ['g','o','y']))
 
-        self.sort() #store in a logical way. 3d list with indexes [i][j][k] to find pieces quicker
+        self.sort() #store in a logical way. A dictionary with keys [ijk]
 
     def sort(self):
         self.sorted = {}
         for p in range(len(self.data)):
             self.sorted[str(str(self.data[p].i) + str(self.data[p].j) + str(self.data[p].k))] = self.data[p]
-
-
+            
     def rotate(self,fr):
         fr = fr.lower()
         transformation_vectors = {'l' : l, "l'" : l_prime, 'r' : r, "r'" : r_prime, 'f' : f, "f'" : f_prime, 'b' : b, "b'" : b_prime, 'u' : u, "u'" : u_prime, 'd' : d, "d'" : d_prime}
@@ -151,11 +149,8 @@ class Cube:
 
                     colours_before = self.data[p].colour
                     colours_after = [colours_before[2], colours_before[1], colours_before[0]]
-                    self.data[p].colour = colours_after
-                 
-                    
+                    self.data[p].colour = colours_after                   
         self.sort()
-
 
     def matrix_multiplication(self,tm,pv):
         #tm = transformation matrix , pv = position vector
@@ -194,14 +189,11 @@ class Cube:
             
         else:
             return False #call error
-
-        
+   
         for i in range(len(toCheck)-1):
-            if self.sorted[toCheck[i]].colour[colour] != self.sorted[toCheck[i+1]].colour[colour]:
-             
+            if self.sorted[toCheck[i]].colour[colour] != self.sorted[toCheck[i+1]].colour[colour]:         
                 return False
         return True
-
 
     def numberOfPairs(self):
         pairs = 0
@@ -212,13 +204,12 @@ class Cube:
                         if self.sorted['{}{}{}'.format(i,j,k)].colour[c] != None:
                             if self.sorted['{}{}{}'.format(i,j,k)].colour[c] == self.sorted['{}{}{}'.format(i,j,k+1)].colour[c]:
                                 pairs += 1
-
                             if self.sorted['{}{}{}'.format(i,j,k)].colour[c] == self.sorted['{}{}{}'.format(i,j+1,k)].colour[c]:
                                 pairs += 1
-
                             if self.sorted['{}{}{}'.format(i,j,k)].colour[c] == self.sorted['{}{}{}'.format(i+1,j,k)].colour[c]:
                                 pairs += 1
         return pairs
+    
 
 class Piece:
 
