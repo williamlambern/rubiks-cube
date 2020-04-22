@@ -8,6 +8,7 @@ class Window:
         #GUI INIT
         self.master = master
         self.master.geometry("400x450")
+        self.master.title("Rubik's Cube")
         self.canvas = Canvas(self.master)
         
         self.e1 = Entry(self.canvas)
