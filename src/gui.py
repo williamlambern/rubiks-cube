@@ -1,6 +1,5 @@
 from tkinter import Tk, Canvas, Frame, Entry, Button, BOTH
 from cube import *
-from solver import *
 import random
 
 class Window:
@@ -147,11 +146,3 @@ class Window:
             moves.append(random.choice(options))
         self.moves = moves
         self.execute_moves(moves)
-
-    
-
-root = Tk()
-Gui = Window(root)
-root.mainloop
-
-
