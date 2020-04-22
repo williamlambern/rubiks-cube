@@ -26,7 +26,6 @@ class Window:
 
     def drawCube(self):
         colours = {'w': 'white', 'y' : 'yellow', 'r' : 'red', 'o' : 'orange', 'b' : 'blue', 'g' : 'green'}
-        self.master.title("Rubik's Cube by William Lambern")
         canvas = self.canvas
         canvas.delete('polygon')
         c = self.cube
